@@ -15,7 +15,7 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="p-5">
       <StepComponents
         email={email}
         setEmail={setEmail}

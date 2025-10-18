@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.email(),
@@ -45,9 +46,12 @@ export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
               name="email"
               render={({ field }) => (
                 <FormItem className="gap-0">
-                  <Button variant={"outline"} className="w-9 h-9 mb-6">
-                    <ChevronLeft />
-                  </Button>
+                  <Link href={"/"}>
+                    <Button variant={"outline"} className="w-9 h-9 mb-6">
+                      <ChevronLeft />
+                    </Button>
+                  </Link>
+
                   <FormLabel className="text-6 leading-8 font-[600] mb-1 ">
                     Create your account
                   </FormLabel>

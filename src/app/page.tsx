@@ -14,12 +14,17 @@ export default function Home() {
     setStep((prev) => prev + 1);
   };
 
+  const handlePrevStep = () => {
+    setStep((prev) => prev - 1);
+  };
+
   return (
-    <main className="p-5">
+    <main className="">
       <StepComponents
         email={email}
         setEmail={setEmail}
         handleNextStep={handleNextStep}
+        handlePrevStep={handlePrevStep}
       />
     </main>
   );

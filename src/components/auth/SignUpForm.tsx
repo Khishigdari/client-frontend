@@ -36,7 +36,7 @@ export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
 
   return (
     // <div className="border rounded-xl max-w-2xl">
-    <div className="w-full h-full flex justify-between">
+    <div className="w-full h-screen flex justify-between p-5">
       <div className="flex items-center ml-25">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -69,11 +69,22 @@ export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
             <Button type="submit" className="w-104">
               Let's Go
             </Button>
+            <div className="flex gap-3 justify-center">
+              <p className="text-muted-foreground text-4 leading-6 font-[400]">
+                Already have an account?
+              </p>
+              <a href="" className="text-[#2563EB] text-4 leading-6 font-[400]">
+                Log in
+              </a>
+            </div>
           </form>
         </Form>
       </div>
       <div className="w-214 h-screen">
-        <img src={"./delivery.svg"} className="rounded-2xl w-214" />
+        <img
+          src={"./delivery.svg"}
+          className="rounded-2xl w-214 h-226 object-cover"
+        />
       </div>
     </div>
   );

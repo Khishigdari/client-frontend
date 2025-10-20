@@ -3,7 +3,6 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 const formSchema = z.object({
   email: z.email(),
@@ -34,6 +34,10 @@ export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
     setEmail(values.email);
     handleNextStep();
   }
+
+  const getSignUpUser = async () => {
+    const signUpUser = await fetch("http://localhost:4000/api/signup");
+  };
 
   return (
     // <div className="border rounded-xl max-w-2xl">

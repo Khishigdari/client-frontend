@@ -21,7 +21,12 @@ const formSchema = z.object({
   email: z.email(),
 });
 
-export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
+export const SignUpForm = ({
+  email,
+  setEmail,
+  handleNextStep,
+  onChange,
+}: any) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,9 +40,11 @@ export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
     handleNextStep();
   }
 
-  const getSignUpUser = async () => {
-    const signUpUser = await fetch("http://localhost:4000/api/signup");
-  };
+  // const getSignUpUser = async () => {
+  //   const signUpUser = await fetch("http://localhost:4000/api/signup");
+  //   const responseData = await signUpUser.json();
+  //   const { email, password } = responseData;
+  // };
 
   return (
     // <div className="border rounded-xl max-w-2xl">
@@ -67,6 +74,7 @@ export const SignUpForm = ({ email, setEmail, handleNextStep }: any) => {
                       placeholder="Enter your email address"
                       {...field}
                       className="w-104"
+                      onChange={onChange}
                     />
                   </FormControl>
 

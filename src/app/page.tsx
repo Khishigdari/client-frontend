@@ -36,6 +36,8 @@ const Home = () => {
     getFoods();
   }, []);
 
+  // const userEmail = localStorage.getItem("userEmail");
+
   return (
     <div className="bg-primary">
       <header className="bg-primary max-w-480 flex justify-between items-center py-3 px-22">
@@ -64,11 +66,12 @@ const Home = () => {
               className="text-secondary-foreground"
             />
           </Button>
-          <Link href={"./signUp"}>
+          <Link href={"./register"}>
             <Button className="rounded-full bg-red-500 py-4 px-4">
               <User width={16} height={16} />
             </Button>
           </Link>
+          {/* <div>{userEmail}</div> */}
         </div>
       </header>
       <div className="">

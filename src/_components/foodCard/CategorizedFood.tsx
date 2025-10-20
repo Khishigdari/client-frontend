@@ -1,4 +1,6 @@
+import { Button } from "@/components/ui/button";
 import { CategoryType, Foodtype } from "@/lib/types";
+import { Plus } from "lucide-react";
 
 export const CategorizedFood = ({
   foods,
@@ -25,6 +27,13 @@ export const CategorizedFood = ({
                 {food.image ? (
                   <div>
                     <img src={food.image} alt="" className="bg-gray-200" />
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="absolute right-5 bottom-5 rounded-full py-2 px-4"
+                    >
+                      <Plus className="text-red-500 " />
+                    </Button>
                   </div>
                 ) : (
                   ""

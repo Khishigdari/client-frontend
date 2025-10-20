@@ -22,7 +22,7 @@ const formSchema = z.object({
   confirmPassword: z.string().min(6).max(10),
 });
 
-export const SignUpPassword = ({ handlePrevStep }: any) => {
+export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
   const [isPassword, setIsPassword] = useState("password");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -116,7 +116,7 @@ export const SignUpPassword = ({ handlePrevStep }: any) => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-104">
+            <Button type="submit" className="w-104" onClick={onCreateUser}>
               Let's Go
             </Button>
             <div className="flex gap-3 justify-center">

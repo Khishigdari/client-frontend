@@ -1,5 +1,3 @@
-"use client";
-
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -18,15 +16,12 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 
 const formSchema = z.object({
-  email: z.email(),
+  email: z.email({
+    error: "Invalid email. Use a format like example@email.com",
+  }),
 });
 
-export const SignUpForm = ({
-  email,
-  setEmail,
-  handleNextStep,
-  onChange,
-}: any) => {
+export const SignUpForm = ({ setEmail, handleNextStep }: any) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,12 +34,6 @@ export const SignUpForm = ({
     setEmail(values.email);
     handleNextStep();
   }
-
-  // const getSignUpUser = async () => {
-  //   const signUpUser = await fetch("http://localhost:4000/api/signup");
-  //   const responseData = await signUpUser.json();
-  //   const { email, password } = responseData;
-  // };
 
   return (
     // <div className="border rounded-xl max-w-2xl">
@@ -74,7 +63,8 @@ export const SignUpForm = ({
                       placeholder="Enter your email address"
                       {...field}
                       className="w-104"
-                      onChange={onChange}
+                      // value={email} //onChange ni controlled uchraas value deer ni email ee butsaana
+                      // onChange={(e) => setEmail(e.target.value)}
                     />
                   </FormControl>
 
@@ -89,9 +79,11 @@ export const SignUpForm = ({
               <p className="text-muted-foreground text-4 leading-6 font-[400]">
                 Already have an account?
               </p>
-              <a href="" className="text-[#2563EB] text-4 leading-6 font-[400]">
-                Log in
-              </a>
+              <Link href={"/login"}>
+                <p className="text-[#2563EB] text-4 leading-6 font-[400]">
+                  Log in
+                </p>
+              </Link>
             </div>
           </form>
         </Form>
@@ -99,7 +91,7 @@ export const SignUpForm = ({
       <div className="w-214 h-screen">
         <img
           src={"./delivery.svg"}
-          className="rounded-2xl w-214 h-226 object-cover"
+          className="rounded-2xl w-214 h-screen object-cover"
         />
       </div>
     </div>

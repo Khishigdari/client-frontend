@@ -1,6 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { CategoryType, Foodtype } from "@/lib/types";
 import { Plus } from "lucide-react";
+import { toast } from "sonner";
 
 export const CategorizedFood = ({
   foods,
@@ -31,6 +33,9 @@ export const CategorizedFood = ({
                       variant="outline"
                       size="icon"
                       className="absolute right-5 bottom-5 rounded-full py-2 px-4"
+                      onClick={() =>
+                        toast.success("Food is being added to the cart!")
+                      }
                     >
                       <Plus className="text-red-500 " />
                     </Button>

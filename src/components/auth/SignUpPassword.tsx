@@ -16,14 +16,24 @@ import {
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, Eye, EyeClosed } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const formSchema = z.object({
   password: z.string().min(6, "Must be above 6 characters").max(10),
-  confirmPassword: z.string().min(6).max(10),
+  confirmPassword: z.string().min(6).max(10, {
+    error: "Those password didn’t match, Try again",
+  }),
 });
 
-export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
+export const SignUpPassword = ({
+  handlePrevStep,
+  onCreateUser,
+  email,
+}: any) => {
   const [isPassword, setIsPassword] = useState("password");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,20 +46,39 @@ export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
   const togglePassword = () => {
     setIsPassword((prev) => {
       if (prev === "password") {
-        return " text";
+        return "text";
       } else {
         return "password";
       }
     });
   };
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+    }
+    const result = await fetch("http://localhost:4000/api/register", {
+      // const result = await fetch("http://localhost:4000/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    console.log("User created:", result);
+
     console.log(values);
   }
 
   function goToPrevStep() {
     handlePrevStep();
   }
+
+  // const router = useRouter();
+  // const changePath = router.push("/");
 
   return (
     <div className="w-full h-screen flex justify-between p-5">
@@ -82,11 +111,11 @@ export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
                         type={isPassword}
                         className="w-104"
                       />
-                      {isPassword === "password" ? (
+                      {/* {isPassword === "password" ? (
                         <Eye onClick={togglePassword} />
                       ) : (
                         <EyeClosed onClick={togglePassword} />
-                      )}
+                      )} */}
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -105,11 +134,21 @@ export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
                         {...field}
                         type={isPassword}
                       />
-                      {isPassword === "password" ? (
-                        <Eye onClick={togglePassword} />
-                      ) : (
-                        <EyeClosed onClick={togglePassword} />
-                      )}
+                      <div className="mt-4 flex gap-2 items-center">
+                        <div>
+                          {isPassword === "password" ? (
+                            <Eye onClick={togglePassword} className="w-4 h-4" />
+                          ) : (
+                            <EyeClosed
+                              onClick={togglePassword}
+                              className="w-4 h-4"
+                            />
+                          )}
+                        </div>
+                        <p className="text-muted-foreground text-[14px] leading-[14px] font-[400]">
+                          Show password
+                        </p>
+                      </div>
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -123,9 +162,13 @@ export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
               <p className="text-muted-foreground text-4 leading-6 font-[400]">
                 Already have an account?
               </p>
-              <a href="" className="text-[#2563EB] text-4 leading-6 font-[400]">
-                Log in
-              </a>
+              <Link href={"/login"}>
+                {/* <Button onClick={() => changePath}> */}
+                <p className="text-[#2563EB] text-4 leading-6 font-[400]">
+                  Log in
+                </p>
+                {/* </Button> */}
+              </Link>
             </div>
           </form>
         </Form>
@@ -133,7 +176,7 @@ export const SignUpPassword = ({ handlePrevStep, onCreateUser }: any) => {
       <div className="w-214 h-screen">
         <img
           src={"./delivery.svg"}
-          className="rounded-2xl w-214 h-226 object-cover"
+          className="rounded-2xl w-214 h-screen object-cover"
         />
       </div>
     </div>

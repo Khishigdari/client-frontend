@@ -32,7 +32,8 @@ const OrderDetailCart = () => {
             />
           </Button>
         </DialogTrigger>
-        <DialogContent className="bg-neutral-700 shadow-lg border-0 flex flex-col gap-7 right-0">
+        {/* <div className="flex justify-end"> */}
+        <DialogContent className="bg-neutral-700 shadow-lg border-0 flex flex-col gap-7 h-screen">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-3 text-primary-foreground">
               <ShoppingCart className="" />
@@ -43,11 +44,11 @@ const OrderDetailCart = () => {
             <Button className="rounded-full py-1 px-24" variant={"destructive"}>
               Cart
             </Button>
-            <Button className="rounded-full py-1 px-23" variant={"destructive"}>
+            <Button className="rounded-full py-1 px-23" variant={"ghost"}>
               Order
             </Button>
           </div>
-          <Card className="flex flex-col gap-5 p-4">
+          <Card className="flex flex-col gap-5 p-4 h-135">
             <CardHeader className="px-0">
               <CardTitle className="text-foreground text-5 text-7 font-[600]">
                 My cart
@@ -91,11 +92,16 @@ const OrderDetailCart = () => {
               </p>
               <p>-</p>
             </div>
-            <Button variant={"destructive"} className="py-2 px-8 rounded-full">
+            <Button
+              variant={"destructive"}
+              className="py-2 px-8 rounded-full"
+              disabled
+            >
               Checkout
             </Button>
           </Card>
         </DialogContent>
+        {/* </div> */}
       </Dialog>
     </div>
   );

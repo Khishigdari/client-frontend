@@ -23,7 +23,7 @@ const LogOutBtn = () => {
     <div>
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button variant="outline" className="rounded-full">
+          <Button variant="destructive" className="rounded-full">
             Logout
           </Button>
         </AlertDialogTrigger>

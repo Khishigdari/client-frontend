@@ -1,48 +1,15 @@
 "use client";
 
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const Page = () => {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (localStorage) {
-      const loggedInEmail = localStorage.getItem("userEmail");
-      if (loggedInEmail) {
-        router.push("/");
-      }
-    }
-  }, []);
-
-  const onLogin = async () => {
-    const result = await fetch("https://food-be-next.vercel.app/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "apllication/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-    const response = await result.json();
-    if (response.success) {
-      // setUserEmail(localStorage.setItem("userEmail", email));
-      localStorage.setItem("userEmail", email);
-      // localStorage.setItem("password", password);
-      router.push("/");
-    } else {
-      alert("Login failed, Email not found");
-    }
-  };
   return (
     <div className="w-full h-screen flex justify-between p-5">
       <div className="flex items-center ml-25">
@@ -53,9 +20,11 @@ const Page = () => {
             </Button>
           </Link>
           <div className="flex flex-col gap-1">
-            <h3 className="text-6 leading-8 font-[600]">Log in</h3>
+            <h3 className="text-6 leading-8 font-[600]">
+              Reset your password{" "}
+            </h3>
             <p className="text-4 leading-6 font-[400] text-muted-foreground">
-              Create a strong password with letters, numbers.
+              Enter your email to receive a password reset link.
             </p>
           </div>
           <div className="flex flex-col gap-4">
@@ -65,19 +34,12 @@ const Page = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <Link href={"./reset"}>
-              {" "}
-              <p className="underline">Forgot password ?</p>
-            </Link>
           </div>
 
-          <Button onClick={onLogin}>Let's Go</Button>
+          <Button>
+            {/* onClick={onLogin} */}
+            Send link
+          </Button>
           <div className="flex gap-3 justify-center">
             <p className="text-muted-foreground text-4 leading-6 font-[400]">
               Don’t have an account?

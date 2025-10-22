@@ -1,6 +1,4 @@
-// "use client";
 import { CategoryType } from "@/lib/types";
-// import { useState } from "react";
 
 export const Footer = ({ categories }: { categories: CategoryType[] }) => {
   return (
@@ -18,15 +16,15 @@ export const Footer = ({ categories }: { categories: CategoryType[] }) => {
               <p className="text-4 leading-7 text-muted-foreground font-[400]">
                 NOMNOM
               </p>
-              <p className="text-4 leading-6 text-primary-foreground font-[400]">
+              <a className="text-4 leading-6 text-primary-foreground font-[400] cursor-pointer">
                 Home
-              </p>
-              <p className="text-4 leading-6 text-primary-foreground font-[400]">
+              </a>
+              <a className="text-4 leading-6 text-primary-foreground font-[400] cursor-pointer">
                 Contact us
-              </p>
-              <p className="text-4 leading-6 text-primary-foreground font-[400]">
+              </a>
+              <a className="text-4 leading-6 text-primary-foreground font-[400] cursor-pointer">
                 Delivery zone
-              </p>
+              </a>
             </div>
             <div className="flex flex-col gap-4 h-57 ">
               <p className="text-4 leading-7 text-muted-foreground font-[400]">
@@ -35,12 +33,12 @@ export const Footer = ({ categories }: { categories: CategoryType[] }) => {
               <div className="flex-wrap flex flex-col gap-y-4 h-50 gap-x-12">
                 {categories.map((category) => {
                   return (
-                    <p
+                    <a
                       key={category._id}
-                      className="text-4 leading-6 text-primary-foreground font-[400]"
+                      className="text-4 leading-6 text-primary-foreground font-[400] cursor-pointer"
                     >
                       {category.name}
-                    </p>
+                    </a>
                   );
                 })}
               </div>
@@ -49,7 +47,7 @@ export const Footer = ({ categories }: { categories: CategoryType[] }) => {
               <p className="text-4 leading-7 text-muted-foreground font-[400] mb-[21px]">
                 FOLLOW US
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 cursor-pointer">
                 <img src={"./Facebook.svg"} />
                 <img src={"./Instagram.svg"} />
               </div>
@@ -66,19 +64,19 @@ export const Footer = ({ categories }: { categories: CategoryType[] }) => {
               <p className="text-sm leading-5 font-normal text-muted-foreground">
                 ©
               </p>
-              <p className="text-sm leading-5 font-normal text-muted-foreground">
+              <a className="cursor-pointer text-sm leading-5 font-normal text-muted-foreground">
                 Nomnom LLC
-              </p>
+              </a>
             </div>
-            <p className="text-sm leading-5 font-normal text-muted-foreground">
+            <a className="cursor-pointer text-sm leading-5 font-normal text-muted-foreground">
               Privacy policy
-            </p>
-            <p className="text-sm leading-5 font-normal text-muted-foreground">
+            </a>
+            <a className="cursor-pointer text-sm leading-5 font-normal text-muted-foreground">
               Terms and condition
-            </p>
-            <p className="text-sm leading-5 font-normal text-muted-foreground">
+            </a>
+            <a className="cursor-pointer text-sm leading-5 font-normal text-muted-foreground">
               Cookie policy
-            </p>
+            </a>
           </div>
         </div>
       </div>

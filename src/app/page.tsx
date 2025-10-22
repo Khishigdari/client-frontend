@@ -11,9 +11,12 @@ const Home = () => {
   // const [newCategory, setNewCategory] = useState<string | undefined>();
   // const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [foods, setFoods] = useState<Foodtype[]>([]);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   const getCategories = async () => {
-    const result = await fetch("http://localhost:4000/api/categories");
+    const result = await fetch(
+      "https://food-be-next.vercel.app/api/categories"
+    );
     const responseData = await result.json();
     const { data } = responseData;
     setCategories(data);
@@ -22,7 +25,7 @@ const Home = () => {
   };
 
   const getFoods = async () => {
-    const result = await fetch("http://localhost:4000/api/foods");
+    const result = await fetch("https://food-be-next.vercel.app/api/foods");
     const responseData = await result.json();
     const { foods } = responseData;
     setFoods(foods);
@@ -34,6 +37,11 @@ const Home = () => {
     getFoods();
   }, []);
 
+  useEffect(() => {
+    if (localStorage) {
+      setUserEmail(localStorage.getItem("userEmail"));
+    }
+  }, []);
   // const userEmail = localStorage.getItem("userEmail");
 
   return (

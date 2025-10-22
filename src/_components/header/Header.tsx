@@ -6,15 +6,29 @@ import Link from "next/link";
 import LogOutBtn from "./LogOutBtn";
 import { useRouter } from "next/navigation";
 import OrderDetailCart from "../orderDetailCart/OrderDetailCart";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
-  const userEmail = localStorage.getItem("userEmail");
+  // const userEmail = localStorage.getItem("userEmail");
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
   const route = useRouter();
-  const email = localStorage.getItem("userEmail");
-  if (!email) {
-    route.push("/login");
-  }
+  useEffect(() => {
+    if (localStorage) {
+      const userEmail = localStorage.getItem("userEmail");
+      if (!userEmail) {
+        route.push("/login");
+      } else {
+        setUserEmail(userEmail);
+      }
+    }
+  }, []);
+
+  // useEffect(() => {
+  //     if(localStorage) {
+  //       setUserEmail(localStorage.setItem("userEmail"))
+  //     }
+  //   }, []);
 
   return (
     <div>
@@ -37,14 +51,8 @@ export const Header = () => {
             </Button>
           </div>
 
-          {/* <Button className="rounded-full bg-secondary py-4 px-4">
-            <ShoppingCart
-              width={16}
-              height={16}
-              className="text-secondary-foreground hover:text-secondary"
-            />
-          </Button> */}
           <OrderDetailCart />
+
           <Link href={"./register"}>
             <Button className="rounded-full bg-red-500 py-4 px-4">
               <User width={16} height={16} />
@@ -63,12 +71,6 @@ export const Header = () => {
           ) : (
             ""
           )}
-          {/* <Button
-            className="bg-background py-2 px-3 rounded-full text-3 leading-4 text-secondary-foreground"
-            variant={"outline"}
-          >
-            {userEmail}
-          </Button> */}
         </div>
       </header>
     </div>

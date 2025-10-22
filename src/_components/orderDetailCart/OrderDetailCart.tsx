@@ -2,49 +2,43 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ShoppingCart } from "lucide-react";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
+import OrderPlaced from "./OrderPlaced";
 
 const OrderDetailCart = () => {
   return (
     <div>
       <Dialog>
-        <DialogTrigger>
-          <Button className="rounded-full bg-secondary py-4 px-4">
-            <ShoppingCart
-              width={16}
-              height={16}
-              className="text-secondary-foreground hover:text-secondary"
-            />
+        <DialogTrigger asChild>
+          <Button variant={"secondary"} className="rounded-full py-4 px-4">
+            <ShoppingCart width={16} height={16} />
           </Button>
         </DialogTrigger>
         {/* <div className="flex justify-end"> */}
         <DialogContent className="bg-neutral-700 shadow-lg border-0 flex flex-col gap-7 h-screen">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-3 text-primary-foreground">
-              <ShoppingCart className="" />
+              <ShoppingCart />
               Order details
             </DialogTitle>
           </DialogHeader>
           <div className="flex gap-2 bg-background p-1 rounded-full justify-between">
-            <Button className="rounded-full py-1 px-24" variant={"destructive"}>
+            <Button
+              className="rounded-full py-1 px-24 focus:bg-red-500 focus:text-secondary-foreground"
+              variant={"ghost"}
+            >
               Cart
             </Button>
-            <Button className="rounded-full py-1 px-23" variant={"ghost"}>
+            <Button
+              className="rounded-full py-1 px-23 focus:bg-red-500 focus:text-secondary-foreground"
+              variant={"ghost"}
+            >
               Order
             </Button>
           </div>
@@ -92,16 +86,11 @@ const OrderDetailCart = () => {
               </p>
               <p>-</p>
             </div>
-            <Button
-              variant={"destructive"}
-              className="py-2 px-8 rounded-full"
-              disabled
-            >
-              Checkout
-            </Button>
+            <div className=" w-full">
+              <OrderPlaced />
+            </div>
           </Card>
         </DialogContent>
-        {/* </div> */}
       </Dialog>
     </div>
   );

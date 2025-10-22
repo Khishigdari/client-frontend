@@ -57,7 +57,7 @@ export const SignUpPassword = ({
     if (password !== confirmPassword) {
       setError("Passwords do not match");
     }
-    const result = await fetch("http://localhost:4000/api/register", {
+    const result = await fetch("https://food-be-next.vercel.app/api/register", {
       // const result = await fetch("http://localhost:4000/api/signup", {
       method: "POST",
       headers: {
@@ -65,9 +65,10 @@ export const SignUpPassword = ({
       },
       body: JSON.stringify({
         email,
-        password,
+        password: values.password,
       }),
     });
+    setPassword(values.password);
     console.log("User created:", result);
 
     console.log(values);

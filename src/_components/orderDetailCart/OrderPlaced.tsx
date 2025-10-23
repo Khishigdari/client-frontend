@@ -1,5 +1,3 @@
-"use clients";
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -10,22 +8,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
 
-const OrderPlaced = () => {
-  const router = useRouter();
-
-  const GoBackHome = () => {
-    router.push("/");
-  };
+const OrderPlaced = ({ goBackHome }: { goBackHome: () => void }) => {
   return (
     <div>
       <AlertDialog>
         <AlertDialogTrigger asChild>
-          <Button
-            variant="destructive"
-            className="py-2 px-8 w-109 rounded-full"
-          >
+          <Button variant="destructive" className="py-2 px-8 rounded-full">
             Checkout
           </Button>
         </AlertDialogTrigger>
@@ -40,7 +29,7 @@ const OrderPlaced = () => {
           </div>
           <AlertDialogFooter>
             <AlertDialogCancel
-              onClick={GoBackHome}
+              onClick={() => goBackHome}
               className="rounded-full bg-secondary border-none"
             >
               Back to home

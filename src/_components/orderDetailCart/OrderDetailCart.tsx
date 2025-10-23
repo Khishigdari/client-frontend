@@ -1,64 +1,107 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ShoppingCart } from "lucide-react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import React from "react";
+import React, { useState } from "react";
 import OrderPlaced from "./OrderPlaced";
+import { useRouter } from "next/navigation";
 
 const OrderDetailCart = () => {
+  const router = useRouter();
+  const [open, setOpen] = useState<boolean>(false);
+
+  const GoBackHome = () => {
+    console.log("hello");
+    setOpen(false);
+    router.push("/");
+  };
   return (
     <div>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant={"secondary"} className="rounded-full py-4 px-4">
+      <Drawer direction="right" open={open} onOpenChange={setOpen}>
+        <DrawerTrigger asChild>
+          <Button
+            variant={"secondary"}
+            className="rounded-full py-4 px-4"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
             <ShoppingCart width={16} height={16} />
           </Button>
-        </DialogTrigger>
-        {/* <div className="flex justify-end"> */}
-        <DialogContent className="bg-neutral-700 shadow-lg border-0 flex flex-col gap-7 h-screen">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-3 text-primary-foreground">
+        </DrawerTrigger>
+        <DrawerContent className="bg-neutral-700 shadow-lg border-0 flex flex-col gap-7 h-screen rounded-l-[20px] p-8 w-134 box-border">
+          <DrawerHeader>
+            <DrawerTitle className="flex items-center gap-3 text-primary-foreground">
               <ShoppingCart />
-              Order details
-            </DialogTitle>
-          </DialogHeader>
-          <div className="flex gap-2 bg-background p-1 rounded-full justify-between">
-            <Button
-              className="rounded-full py-1 px-24 focus:bg-red-500 focus:text-secondary-foreground"
-              variant={"ghost"}
-            >
-              Cart
-            </Button>
-            <Button
-              className="rounded-full py-1 px-23 focus:bg-red-500 focus:text-secondary-foreground"
-              variant={"ghost"}
-            >
-              Order
-            </Button>
+              Order detail
+            </DrawerTitle>
+          </DrawerHeader>
+          <div>
+            <Tabs defaultValue="cart" className="gap-0">
+              <TabsList className="flex gap-2 mb-7 bg-background p-1 rounded-full justify-between w-fit">
+                <TabsTrigger
+                  value="cart"
+                  className="rounded-full py-1 focus:bg-red-500"
+                >
+                  Cart
+                </TabsTrigger>
+                <TabsTrigger
+                  value="order"
+                  className="rounded-full py-1  focus:bg-red-500"
+                >
+                  Order
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="cart">
+                <Card className="flex flex-col gap-5 p-4 h-135">
+                  <CardHeader className="px-0">
+                    <CardTitle className="text-foreground text-5 text-7 font-[600]">
+                      My cart
+                    </CardTitle>
+                  </CardHeader>
+                  <div className="bg-secondary py-8 px-12 rounded-xl flex flex-col gap-1 items-center">
+                    <img src={"./cartIcon.svg"} />
+                    <p className="text-foreground text-4 leading-7 font-[700]">
+                      Your cart is empty
+                    </p>
+                    <p className="text-muted-foreground  text-xs text-center">
+                      Hungry? 🍔 Add some delicious dishes to your cart and
+                      satisfy your cravings!
+                    </p>
+                  </div>
+                </Card>
+              </TabsContent>
+              <TabsContent value="order">
+                <Card className="flex flex-col gap-5 p-4 h-135">
+                  <CardHeader className="px-0">
+                    <CardTitle className="text-foreground text-5 text-7 font-[600]">
+                      Order history
+                    </CardTitle>
+                  </CardHeader>
+                  <div className="bg-secondary py-8 px-12 rounded-xl flex flex-col gap-1 items-center">
+                    <img src={"./cartIcon.svg"} />
+                    <p className="text-foreground text-4 leading-7 font-[700]">
+                      No Orders Yet?
+                    </p>
+                    <p className="text-muted-foreground  text-xs text-center">
+                      🍕 "You haven't placed any orders yet. Start exploring our
+                      menu and satisfy your cravings!"
+                    </p>
+                  </div>
+                </Card>
+              </TabsContent>
+            </Tabs>
           </div>
-          <Card className="flex flex-col gap-5 p-4 h-135">
-            <CardHeader className="px-0">
-              <CardTitle className="text-foreground text-5 text-7 font-[600]">
-                My cart
-              </CardTitle>
-            </CardHeader>
-            <div className="bg-secondary py-8 px-12 rounded-xl flex flex-col gap-1 items-center">
-              <img src={"./cartIcon.svg"} />
-              <p className="text-foreground text-4 leading-7 font-[700]">
-                Your cart is empty
-              </p>
-              <p className="text-muted-foreground  text-xs text-center">
-                Hungry? 🍔 Add some delicious dishes to your cart and satisfy
-                your cravings!
-              </p>
-            </div>
-          </Card>
+
           <Card className="flex flex-col gap-5 p-4">
             <CardHeader className="px-0">
               <CardTitle className="text-foreground text-5 text-7 font-[600]">
@@ -87,11 +130,11 @@ const OrderDetailCart = () => {
               <p>-</p>
             </div>
             <div className=" w-full">
-              <OrderPlaced />
+              <OrderPlaced goBackHome={GoBackHome} />
             </div>
           </Card>
-        </DialogContent>
-      </Dialog>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 };

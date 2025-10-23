@@ -3,6 +3,7 @@
 import { CategorizedFood } from "@/_components/foodCard";
 import { Header } from "@/_components/header/Header";
 import { Footer } from "@/_components/layout/Footer";
+
 import { CategoryType, Foodtype } from "@/lib/types";
 import { useEffect, useState } from "react";
 
@@ -50,6 +51,7 @@ const Home = () => {
       <div className="">
         <img src={"./BG.svg"} className="w-480 h-142.5 object-cover" />
       </div>
+
       <div className="p-22 bg-neutral-700">
         {categories.map((category) => {
           return (

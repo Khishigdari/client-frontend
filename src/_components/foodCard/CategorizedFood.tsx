@@ -3,14 +3,12 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { CategoryType, Foodtype } from "@/lib/types";
 import { Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
-import FoodDetail from "./FoodDetail";
 import { useState } from "react";
 
 export const CategorizedFood = ({
@@ -23,21 +21,29 @@ export const CategorizedFood = ({
   refetchFoods: () => Promise<void>;
 }) => {
   const [selectedFoodId, setSelectedFoodId] = useState<string | null>(null);
-  const [count, setCount] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [totalPrice, setTotalPrice] = useState<number>(1);
+
+  const selectedFood = foods.find((food) => food._id === selectedFoodId);
+
+  const foodPrice = foods.map((food) => food.price);
 
   const handleCountUpOnClick = () => {
-    setCount(count + 1);
+    setQuantity(quantity + 1);
+    setTotalPrice((totalPrice) => totalPrice * quantity);
+    // setTotalPrice(quantity * foodPrice)
   };
 
   const handleCountDownOnClick = () => {
-    setCount(count - 1);
+    setQuantity(quantity - 1);
+    // setTotalPrice(
+    //   (totalPrice) => totalPrice - (totalPrice - foods.price * (quantity - 1))
+    // );
   };
 
   const handleFoodClick = (id: string) => {
     setSelectedFoodId(id);
   };
-
-  const selectedFood = foods.find((food) => food._id === selectedFoodId);
 
   return (
     <div>
@@ -97,7 +103,8 @@ export const CategorizedFood = ({
                           {food.name}
                         </h3>
                         <div className="text-[18px] leading-7 text-foreground font-semibold">
-                          ₮{food.price}
+                          ${food.price}
+                          {/* ₮ */}
                         </div>
                       </div>
                       <div className="text-[14px] leading-5 text-foreground font-normal items-start">
@@ -134,7 +141,7 @@ export const CategorizedFood = ({
                                     Total price
                                   </p>
                                   <h3 className="text-foreground text-6 leading-8 font-[600]">
-                                    ₮{selectedFood.price}
+                                    {/* ${selectedFood.price} */}${totalPrice}
                                   </h3>
                                 </div>
                                 <div className="flex gap-3 items-center">
@@ -148,7 +155,7 @@ export const CategorizedFood = ({
                                   </Button>
                                   {/* <p>{count}</p> */}
                                   <p className="text-[18px] leading-7 font-[600] text-foreground">
-                                    {count}
+                                    {quantity}
                                   </p>
                                   <Button
                                     variant={"outline"}

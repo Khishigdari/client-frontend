@@ -7,7 +7,7 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
 const Page = () => {
-  const [password, setPassword] = useState<string>("");
+  // const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
   return (
@@ -45,11 +45,9 @@ const Page = () => {
               Don’t have an account?
             </p>
             <Link href={"/register"}>
-              {/* <Button onClick={() => changePath}> */}
               <p className="text-[#2563EB] text-4 leading-6 font-[400]">
                 Sign up
               </p>
-              {/* </Button> */}
             </Link>
           </div>
         </div>

@@ -9,7 +9,6 @@ import OrderDetailCart from "../orderDetailCart/OrderDetailCart";
 import { useEffect, useState } from "react";
 
 export const Header = () => {
-  // const userEmail = localStorage.getItem("userEmail");
   const [userEmail, setUserEmail] = useState<string | null>(null);
 
   const route = useRouter();
@@ -23,12 +22,6 @@ export const Header = () => {
       }
     }
   }, []);
-
-  // useEffect(() => {
-  //     if(localStorage) {
-  //       setUserEmail(localStorage.setItem("userEmail"))
-  //     }
-  //   }, []);
 
   return (
     <div>

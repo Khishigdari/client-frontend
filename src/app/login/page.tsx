@@ -83,11 +83,9 @@ const Page = () => {
               Don’t have an account?
             </p>
             <Link href={"/register"}>
-              {/* <Button onClick={() => changePath}> */}
               <p className="text-[#2563EB] text-4 leading-6 font-[400]">
                 Sign up
               </p>
-              {/* </Button> */}
             </Link>
           </div>
         </div>

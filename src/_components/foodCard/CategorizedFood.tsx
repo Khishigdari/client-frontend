@@ -10,35 +10,30 @@ import { CategoryType, Foodtype } from "@/lib/types";
 import { Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useFood } from "@/_hooks/use-food";
 
 export const CategorizedFood = ({
-  foods,
   category,
-  refetchFoods,
+  foods,
 }: {
-  foods: Foodtype[];
   category: CategoryType;
-  refetchFoods: () => Promise<void>;
+  foods: Foodtype[];
 }) => {
+  // const { foods } = useFood();
+
   const [selectedFoodId, setSelectedFoodId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  const [totalPrice, setTotalPrice] = useState<number>(1);
+  const [price, setPrice] = useState<Foodtype>();
 
   const selectedFood = foods.find((food) => food._id === selectedFoodId);
 
-  const foodPrice = foods.map((food) => food.price);
-
   const handleCountUpOnClick = () => {
+    setPrice(price);
     setQuantity(quantity + 1);
-    setTotalPrice((totalPrice) => totalPrice * quantity);
-    // setTotalPrice(quantity * foodPrice)
   };
 
   const handleCountDownOnClick = () => {
     setQuantity(quantity - 1);
-    // setTotalPrice(
-    //   (totalPrice) => totalPrice - (totalPrice - foods.price * (quantity - 1))
-    // );
   };
 
   const handleFoodClick = (id: string) => {
@@ -60,12 +55,8 @@ export const CategorizedFood = ({
                   <div
                     className="w-99.5 h-85.5 p-4 border border-border rounded-[20px] flex flex-col gap-5 bg-white"
                     onClick={() => handleFoodClick(food._id)}
-                    // defaultChecked={selectedFoodId === food._id}
                   >
-                    <div
-                      className="w-full h-52.5 rounded-xl  overflow-hidden relative"
-                      // defaultChecked={selectedFoodId === food._id}
-                    >
+                    <div className="w-full h-52.5 rounded-xl  overflow-hidden relative">
                       {food.image ? (
                         <div>
                           <img
@@ -141,7 +132,7 @@ export const CategorizedFood = ({
                                     Total price
                                   </p>
                                   <h3 className="text-foreground text-6 leading-8 font-[600]">
-                                    {/* ${selectedFood.price} */}${totalPrice}
+                                    ${selectedFood.price}
                                   </h3>
                                 </div>
                                 <div className="flex gap-3 items-center">
@@ -153,7 +144,6 @@ export const CategorizedFood = ({
                                   >
                                     <Minus />
                                   </Button>
-                                  {/* <p>{count}</p> */}
                                   <p className="text-[18px] leading-7 font-[600] text-foreground">
                                     {quantity}
                                   </p>

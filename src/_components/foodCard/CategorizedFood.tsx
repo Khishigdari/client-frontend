@@ -68,17 +68,17 @@ export const CategorizedFood = ({
                             variant="outline"
                             size="icon"
                             className="absolute right-5 bottom-5 rounded-full py-2 px-4"
-                            onClick={() =>
-                              toast.success(
-                                "Food is being added to the cart!"
-                                //   {
-                                //   style: {
-                                //     background: "primary",
-                                //     border: "1px",
-                                //   },
-                                // }
-                              )
-                            }
+                            // onClick={() =>
+                            //   toast.success(
+                            //     "Food is being added to the cart!"
+                            //     //   {
+                            //     //   style: {
+                            //     //     background: "primary",
+                            //     //     border: "1px",
+                            //     //   },
+                            //     // }
+                            //   )
+                            // }
                           >
                             <Plus className="text-red-500 " />
                           </Button>
@@ -157,7 +157,20 @@ export const CategorizedFood = ({
                                   </Button>
                                 </div>
                               </div>
-                              <Button className="rounded-full py-2 px8 w-94 text-[14px] leading-5 font-[500]">
+                              <Button
+                                className="rounded-full py-2 px8 w-94 text-[14px] leading-5 font-[500]"
+                                onClick={() =>
+                                  toast.success(
+                                    "Food is being added to the cart!"
+                                    //   {
+                                    //   style: {
+                                    //     background: "primary",
+                                    //     border: "1px",
+                                    //   },
+                                    // }
+                                  )
+                                }
+                              >
                                 Add to cart
                               </Button>
                             </div>

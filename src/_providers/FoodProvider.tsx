@@ -58,7 +58,12 @@ export const FoodProvider = ({ children }: Props) => {
 
   return (
     <FoodContext.Provider
-      value={{ foods, categories, refetchFoods: getFoods, isLoading }}
+      value={{
+        foods,
+        categories,
+        refetchFoods: getFoods,
+        isLoading,
+      }}
     >
       {children}
     </FoodContext.Provider>

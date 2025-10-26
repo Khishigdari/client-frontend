@@ -10,7 +10,8 @@ import { CategoryType, Foodtype } from "@/lib/types";
 import { Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
-import { useFood } from "@/_hooks/use-food";
+// import { useFood } from "@/_hooks/use-food";
+// import { Toaster } from "@/components/ui/sonner";
 
 export const CategorizedFood = ({
   category,
@@ -23,17 +24,18 @@ export const CategorizedFood = ({
 
   const [selectedFoodId, setSelectedFoodId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  const [price, setPrice] = useState<Foodtype>();
+  const [price, setPrice] = useState<Foodtype[]>();
 
   const selectedFood = foods.find((food) => food._id === selectedFoodId);
 
   const handleCountUpOnClick = () => {
-    setPrice(price);
     setQuantity(quantity + 1);
   };
 
   const handleCountDownOnClick = () => {
-    setQuantity(quantity - 1);
+    // const handleDecrease = () => setCount(prev => (prev > 0 ? prev - 1 : 0));
+
+    setQuantity(quantity > 1 ? quantity - 1 : 1);
   };
 
   const handleFoodClick = (id: string) => {
@@ -132,7 +134,7 @@ export const CategorizedFood = ({
                                     Total price
                                   </p>
                                   <h3 className="text-foreground text-6 leading-8 font-[600]">
-                                    ${selectedFood.price}
+                                    ${selectedFood.price * quantity}
                                   </h3>
                                 </div>
                                 <div className="flex gap-3 items-center">
@@ -141,6 +143,7 @@ export const CategorizedFood = ({
                                     className="rounded-full "
                                     size={"lg"}
                                     onClick={handleCountDownOnClick}
+                                    disabled={quantity === 1}
                                   >
                                     <Minus />
                                   </Button>

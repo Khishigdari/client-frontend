@@ -47,7 +47,7 @@ const OrderDetailCart = () => {
           </DrawerHeader>
           <div>
             <Tabs defaultValue="cart" className="gap-0">
-              <TabsList className="flex gap-2 mb-7 bg-background p-1 rounded-full justify-between w-fit">
+              <TabsList className="flex gap-2 mb-7 bg-background p-1 rounded-full justify-between w-80">
                 <TabsTrigger
                   value="cart"
                   className="rounded-full py-1 focus:bg-red-500"
@@ -62,7 +62,7 @@ const OrderDetailCart = () => {
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="cart">
-                <Card className="flex flex-col gap-5 p-4 h-135">
+                <Card className="flex flex-col gap-5 p-4 ">
                   <CardHeader className="px-0">
                     <CardTitle className="text-foreground text-5 text-7 font-[600]">
                       My cart
@@ -81,7 +81,7 @@ const OrderDetailCart = () => {
                 </Card>
               </TabsContent>
               <TabsContent value="order">
-                <Card className="flex flex-col gap-5 p-4 h-135">
+                <Card className="flex flex-col gap-5 p-4 ">
                   <CardHeader className="px-0">
                     <CardTitle className="text-foreground text-5 text-7 font-[600]">
                       Order history

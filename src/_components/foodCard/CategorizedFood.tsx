@@ -24,7 +24,6 @@ export const CategorizedFood = ({
 
   const [selectedFoodId, setSelectedFoodId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  const [price, setPrice] = useState<Foodtype[]>();
 
   const selectedFood = foods.find((food) => food._id === selectedFoodId);
 
@@ -106,82 +105,80 @@ export const CategorizedFood = ({
                     </div>
                   </div>
                 </DialogTrigger>
-                <DialogContent>
-                  <DialogTitle></DialogTitle>
-                  <DialogContent>
-                    {selectedFood && (
-                      <div className="" key={selectedFood._id}>
-                        <div className="flex p-6 gap-6 w-full">
-                          <div>
-                            <img
-                              src={selectedFood.image}
-                              className="rounded-xl h-91 w-94"
-                            />
+                <DialogTitle></DialogTitle>
+                <DialogContent className="max-w-207">
+                  {selectedFood && (
+                    <div className="" key={selectedFood._id}>
+                      <div className="flex p-6 gap-6 w-full">
+                        <div>
+                          <img
+                            src={selectedFood.image}
+                            className="rounded-xl h-91 w-94"
+                          />
+                        </div>
+                        <div className="pt-9 flex flex-col justify-between">
+                          <div className="flex flex-col gap-3">
+                            <h2 className="text-[30px] leading-9 font-[600] text-red-500">
+                              {selectedFood.name}
+                            </h2>
+                            <p className="text-4 leading-6 font-[400] text-foreground">
+                              {selectedFood.ingredients}
+                            </p>
                           </div>
-                          <div className="pt-9 flex flex-col justify-between">
-                            <div className="flex flex-col gap-3">
-                              <h2 className="text-[30px] leading-9 font-[600] text-red-500">
-                                {selectedFood.name}
-                              </h2>
-                              <p className="text-4 leading-6 font-[400] text-foreground">
-                                {selectedFood.ingredients}
-                              </p>
-                            </div>
-                            <div className="flex flex-col gap-6">
-                              <div className="flex justify-between">
-                                <div className="flex flex-col gap-0">
-                                  <p className="text-foreground text-4 leading-6 font-[400]">
-                                    Total price
-                                  </p>
-                                  <h3 className="text-foreground text-6 leading-8 font-[600]">
-                                    ${selectedFood.price * quantity}
-                                  </h3>
-                                </div>
-                                <div className="flex gap-3 items-center">
-                                  <Button
-                                    variant={"outline"}
-                                    className="rounded-full "
-                                    size={"lg"}
-                                    onClick={handleCountDownOnClick}
-                                    disabled={quantity === 1}
-                                  >
-                                    <Minus />
-                                  </Button>
-                                  <p className="text-[18px] leading-7 font-[600] text-foreground">
-                                    {quantity}
-                                  </p>
-                                  <Button
-                                    variant={"outline"}
-                                    className="rounded-full "
-                                    size={"lg"}
-                                    onClick={handleCountUpOnClick}
-                                  >
-                                    <Plus />
-                                  </Button>
-                                </div>
+                          <div className="flex flex-col gap-6">
+                            <div className="flex justify-between">
+                              <div className="flex flex-col gap-0">
+                                <p className="text-foreground text-4 leading-6 font-[400]">
+                                  Total price
+                                </p>
+                                <h3 className="text-foreground text-6 leading-8 font-[600]">
+                                  ${selectedFood.price * quantity}
+                                </h3>
                               </div>
-                              <Button
-                                className="rounded-full py-2 px8 w-94 text-[14px] leading-5 font-[500]"
-                                onClick={() =>
-                                  toast.success(
-                                    "Food is being added to the cart!"
-                                    //   {
-                                    //   style: {
-                                    //     background: "primary",
-                                    //     border: "1px",
-                                    //   },
-                                    // }
-                                  )
-                                }
-                              >
-                                Add to cart
-                              </Button>
+                              <div className="flex gap-3 items-center">
+                                <Button
+                                  variant={"outline"}
+                                  className="rounded-full "
+                                  size={"lg"}
+                                  onClick={handleCountDownOnClick}
+                                  disabled={quantity === 1}
+                                >
+                                  <Minus />
+                                </Button>
+                                <p className="text-[18px] leading-7 font-[600] text-foreground">
+                                  {quantity}
+                                </p>
+                                <Button
+                                  variant={"outline"}
+                                  className="rounded-full "
+                                  size={"lg"}
+                                  onClick={handleCountUpOnClick}
+                                >
+                                  <Plus />
+                                </Button>
+                              </div>
                             </div>
+                            <Button
+                              className="rounded-full py-2 px8 w-94 text-[14px] leading-5 font-[500]"
+                              onClick={() =>
+                                toast.success(
+                                  "Food is being added to the cart!"
+                                  //   {
+                                  //   style: {
+                                  //     background: "primary",
+                                  //     border: "1px",
+                                  //   },
+                                  // }
+                                )
+                              }
+                            >
+                              Add to cart
+                            </Button>
                           </div>
                         </div>
                       </div>
-                    )}
-                  </DialogContent>
+                    </div>
+                  )}
                 </DialogContent>
               </Dialog>
             </div>

@@ -133,7 +133,8 @@ export const CategorizedFood = ({
                                     Total price
                                   </p>
                                   <h3 className="text-foreground text-6 leading-8 font-[600]">
-                                    ${selectedFood.price * quantity}
+                                    $
+                                    {(selectedFood.price * quantity).toFixed(2)}
                                   </h3>
                                 </div>
                                 <div className="flex gap-3 items-center">

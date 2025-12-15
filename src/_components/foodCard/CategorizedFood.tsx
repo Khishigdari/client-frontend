@@ -24,7 +24,6 @@ export const CategorizedFood = ({
 
   const [selectedFoodId, setSelectedFoodId] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
-  const [price, setPrice] = useState<Foodtype[]>();
 
   const selectedFood = foods.find((food) => food._id === selectedFoodId);
 
@@ -108,7 +107,7 @@ export const CategorizedFood = ({
                 </DialogTrigger>
                 <DialogContent>
                   <DialogTitle></DialogTitle>
-                  <DialogContent>
+                  <DialogContent className="w-207">
                     {selectedFood && (
                       <div className="" key={selectedFood._id}>
                         <div className="flex p-6 gap-6 w-full">
@@ -134,7 +133,8 @@ export const CategorizedFood = ({
                                     Total price
                                   </p>
                                   <h3 className="text-foreground text-6 leading-8 font-[600]">
-                                    ${selectedFood.price * quantity}
+                                    $
+                                    {(selectedFood.price * quantity).toFixed(2)}
                                   </h3>
                                 </div>
                                 <div className="flex gap-3 items-center">

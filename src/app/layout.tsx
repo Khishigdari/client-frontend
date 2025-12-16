@@ -56,7 +56,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <Toaster />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

@@ -17,6 +17,31 @@ const Home = () => {
     }
   }, []);
 
+  // const getUserId = async () => {
+  //   const response = await fetch("http://localhost:4000/api/user", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       email: userEmail,
+  //     }),
+  //   });
+
+  //   const data = await response.json();
+
+  //   if (data.success) {
+  //     localStorage.setItem("userId", data.userId);
+  //     console.log("userId:", localStorage.getItem("userId"));
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (userEmail) {
+  //     getUserId();
+  //   }
+  // }, [userEmail]);
+
   return (
     <div className="bg-primary inter">
       <Header />

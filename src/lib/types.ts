@@ -11,3 +11,13 @@ export type Foodtype = {
   image: string;
   categoryId: CategoryType;
 };
+export type FoodOrderItem = {
+  food: Foodtype;
+  quantity: number;
+};
+export type Ordertype = {
+  _id: string;
+  totalPrice: number;
+  foodOrderItems: FoodOrderItem[];
+  status: string;
+};

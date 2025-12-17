@@ -26,7 +26,7 @@ const Page = () => {
     const result = await fetch("https://food-be-next.vercel.app/api/login", {
       method: "POST",
       headers: {
-        "Content-Type": "apllication/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email,
@@ -43,6 +43,7 @@ const Page = () => {
       alert("Login failed, Email not found");
     }
   };
+
   return (
     <div className="w-full h-screen flex justify-between p-5">
       <div className="flex items-center ml-25">

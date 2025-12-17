@@ -46,22 +46,16 @@ export const CategorizedFood = ({
   };
 
   async function onOrder() {
-    // const result = await fetch("http://localhost:4000/api/order", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     foodId: selectedFood?._id,
-    //     quantity,
-    //   }),
-    // });
-    const result = await fetch("http://localhost:4000/api/order", {
+    // const userId = localStorage.getItem("userId");
+    // http://localhost:4000/api/order
+    //https:food-be-next.vercel.app/api/categories
+    const result = await fetch("https://food-be-next.vercel.app/api/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        // userId,
         items: [
           {
             foodId: selectedFood?._id,
@@ -70,7 +64,7 @@ export const CategorizedFood = ({
         ],
       }),
     });
-    console.log({ result });
+    // console.log({ result });
     const response = await result.json();
     if (response.success) {
       localStorage.setItem(
@@ -119,6 +113,7 @@ export const CategorizedFood = ({
                                 variant="outline"
                                 size="icon"
                                 className="absolute right-5 bottom-5 rounded-full py-2 px-4"
+                                onClick={onOrder}
                               >
                                 <Plus className="text-red-500 " />
                               </Button>

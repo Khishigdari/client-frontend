@@ -15,8 +15,8 @@ export const useFood = () => {
     const responseData = await result.json();
     const { data } = responseData;
     setCategories(data);
-    console.log(data, "data");
-    setCategories(data);
+    // console.log(data, "data");
+    // setCategories(data);
   };
 
   const getFoods = async () => {
@@ -24,8 +24,8 @@ export const useFood = () => {
     const responseData = await result.json();
     const { foods } = responseData;
     setFoods(foods);
-    console.log(foods, "data");
-    console.log(responseData);
+    // console.log(foods, "data");
+    // console.log(responseData);
   };
   useEffect(() => {
     getCategories();

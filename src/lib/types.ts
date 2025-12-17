@@ -21,3 +21,15 @@ export type Ordertype = {
   foodOrderItems: FoodOrderItem[];
   status: string;
 };
+
+export type CartItem = {
+  foodId: string;
+  food: {
+    _id: string;
+    name: string;
+    price: number;
+    image: string;
+    ingredients: string;
+  };
+  quantity: number;
+};
